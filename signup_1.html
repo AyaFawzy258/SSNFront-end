@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>Sign Up</title>
+        <meta charset="utf_8"/>
+        <link rel="stylesheet" href="signup_1.css" />
+
+    </head>
+    <body>
+       
+      
+        <form class="myform">
+            <div class="z">
+            <h1>
+                Create your account
+            </h1>
+           <label for="f" class="a">Frist Name</label>
+           <input id="f" type="text" placeholder="frist_name" class="one" name="fname"><br>
+           <label for="l" class="a">Last Name</label>
+           <input id="l" type="text" placeholder="last_name" class="one" name="lname"><br>
+           <label for="m" >Mobil Number OR Email</label>
+           <input id="m" type="text" placeholder="Enter" class="c" name="emailOrPhone"><br>
+           <label for="p" >New Password</label>
+           <input id="p" type="password" placeholder="Enter Password" class="m"  name="npass"><br>
+           <label for="o" >Confirm Password</label>
+           <input id="o" type="password" placeholder="confirm Password" class="n" name="cpass" ><br>
+           <label class="a" name="gender">Gender</label>
+           <select class="d" id="g">
+            <option > Male</option>
+            <option> Female </option>
+          </select><br>
+          <button type="submit" class="x" id="si">Sign up</button>   
+        </div>
+        </form>
+      
+         <script>
+            const myForm= document.querySelector('.myform');
+            myForm.addEventListener('submit' , event => {
+             event.preventDefault();
+             const formData = new FormData(myForm);
+             const data = Object.fromEntries(formData);
+             if(document.getElementById("p").value!=document.getElementById("o").value){
+                alert(Error)
+             }else{
+             fetch(/*'http://localhost:8086/v1/private/api/user'*/"https://jsonplaceholder.typicode.com/todos",{
+                 method: 'POST',
+                 headers: {
+                     'Content-Type' : 'application/json'
+                 },
+                 body: JSON.stringify(data)
+             });
+             //console.log(data);
+             window.location.href='project/Main Page.html';
+            }
+            });
+         </script>
+         
+    </body>
+</html>

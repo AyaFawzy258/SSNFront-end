@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Sign IN</title>
+        <meta charset="utf_8"/>
+        <link rel="stylesheet" href="signin_1.css" />
+
+    </head>
+    <body>
+       <form class="myformin">
+           <div class="d">
+           <input id="e" type="text" placeholder="Enter_Email" class="on" name="emailOrPhone"><br>
+           <input id="p" type="text" placeholder="Enter_password" class="on" name="cpass"><br>
+           <button type="submit" class="onx" id="s">Log in</button><br>
+           <a href="password_1.html" class="xn"> Forgotten Password ?</a><br><br><br>
+           <input type="button" onclick="window.location.href='signup_1.html'" class="xx" value="Create new account"/>
+          </div>
+        </form>
+    
+    </body>
+    <script>  
+     const myForm= document.querySelector('.myformin');
+     myForm.addEventListener('submit' , event => {
+    event.preventDefault();
+    var email =document.getElementById("e").value;
+      var password= document.getElementById("p").value;
+        var http= new XMLHttpRequest();
+        http.open("GET","https://51db-156-195-108-131.ngrok-free.app/v1/private/api/user?emailOrPhone="+email+"& nPass="+password+"",true);
+        http.responseType='json';
+        http.send();
+        http.onreadystatechange=function(){
+        if(http.readyState==4&&http.status==200){
+         console.log(http.response);
+         if (http.dispatchEvent =true){
+          window.location.href='project/Main Page.html';
+        }else{
+          alert("Incorrect email or password");
+        }}  
+}})
+   
+     </script>
+</html>
